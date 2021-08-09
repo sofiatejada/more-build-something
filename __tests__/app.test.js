@@ -43,4 +43,13 @@ describe('song routes', () => {
 
     expect(res.body).toEqual(currentSong);
   });
+  it('gets all songs', async () => {
+    const song1 = await Song.insert(vista);
+    const song2 = await Song.insert(never);
+    const song3 = await Song.insert(reckoner);
+
+    const res = await request(app).get('/api/v1/songs');
+
+    expect(res.body).toEqual([song1, song2, song3]);
+  });
 });
