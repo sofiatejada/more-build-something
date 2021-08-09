@@ -54,7 +54,6 @@ describe('song routes', () => {
   });
   it('updates a song by id', async () => {
     const currentSong = await Song.insert(reckoner);
-    console.log('HHHHHHHHHHHHH', currentSong);
 
     const res = await request(app)
       .put(`/api/v1/songs/${currentSong.id}`)
@@ -62,12 +61,14 @@ describe('song routes', () => {
 
     expect(res.body).toEqual({ ...currentSong, title: 'Paranoid Android' });
   });
-  // it('deletes a song by id', async () => {
-  //   const currentSong = await Song.insert(vista);
+  it('deletes a song by id', async () => {
+    const currentSong = await Song.insert(vista);
 
-  //   const res = await request(app)
-  //     .delete(`/api/v1/songs/${currentSong.id}`);
+    const res = await request(app)
+      .delete(`/api/v1/songs/${currentSong.id}`);
 
-  //   expect(res.body).toEqual();
-  // });
+    expect(res.body).toEqual({
+      message: `Song ${currentSong.title} has been deleted.`
+    });
+  });
 });
