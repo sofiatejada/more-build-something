@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Song from '../lib/models/Song.js';
 
 const vista = {
   title: 'Vista',
@@ -34,5 +35,10 @@ describe('song routes', () => {
       id: '1',
       ...vista
     });
+  });
+  it('gets a song by id', async () => {
+    await Song.insert(never);
+
+    const res = await request(app).get(`/api/v1/songs/${never.id}`);
   });
 });
