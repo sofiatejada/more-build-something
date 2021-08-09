@@ -52,4 +52,13 @@ describe('song routes', () => {
 
     expect(res.body).toEqual([song1, song2, song3]);
   });
+  it('updates a song by id', async () => {
+    const currentSong = await Song.insert(reckoner);
+
+    const res = await request(app)
+      .put(`/api/v1/songs/${currentSong.id}`)
+      .send({ title: 'Paranoid Android' });
+
+    expect(res.body).toEqual({ ...currentSong, title: 'Paranoid Android' });
+  });
 });
