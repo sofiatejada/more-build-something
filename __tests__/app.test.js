@@ -37,8 +37,10 @@ describe('song routes', () => {
     });
   });
   it('gets a song by id', async () => {
-    await Song.insert(never);
+    const currentSong = await Song.insert(never);
 
-    const res = await request(app).get(`/api/v1/songs/${never.id}`);
+    const res = await request(app).get(`/api/v1/songs/${currentSong.id}`);
+
+    expect(res.body).toEqual(currentSong);
   });
 });
