@@ -54,6 +54,7 @@ describe('song routes', () => {
   });
   it('updates a song by id', async () => {
     const currentSong = await Song.insert(reckoner);
+    console.log('HHHHHHHHHHHHH', currentSong);
 
     const res = await request(app)
       .put(`/api/v1/songs/${currentSong.id}`)
