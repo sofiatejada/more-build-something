@@ -52,7 +52,7 @@ describe('song routes', () => {
 
     expect(res.body).toEqual([song1, song2, song3]);
   });
-  it.skip('updates a song by id', async () => {
+  it('updates a song by id', async () => {
     const currentSong = await Song.insert(reckoner);
     console.log('HHHHHHHHHHHHH', currentSong);
 
@@ -62,12 +62,12 @@ describe('song routes', () => {
 
     expect(res.body).toEqual({ ...currentSong, title: 'Paranoid Android' });
   });
-  it('deletes a song by id', async () => {
-    const currentSong = await Song.insert(vista);
+  // it('deletes a song by id', async () => {
+  //   const currentSong = await Song.insert(vista);
 
-    const res = await request(app)
-      .delete(`/api/v1/songs/${currentSong.id}`);
+  //   const res = await request(app)
+  //     .delete(`/api/v1/songs/${currentSong.id}`);
 
-    expect(res.body).toEqual();
-  });
+  //   expect(res.body).toEqual();
+  // });
 });
